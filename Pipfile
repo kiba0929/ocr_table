@@ -8,7 +8,9 @@ autopep8 = ">=1.5"
 pep8-naming = ">=0.8.2"
 
 [packages]
-
+gpt-index = "*"
+docx2txt = "*"
+deepl = "*"
 
 [requires]
 python_version = "3.9"
