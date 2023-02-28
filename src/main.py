@@ -1,9 +1,9 @@
 import question,make_index
 
-#環境変数の設定、indexを作成するための翻訳txtファイルの用意
+#環境変数の設定、indexを作成するための翻訳txtファイルの用意、deeplのglossaryの設定
 make_index.set_env()
 make_index.set_deepl()
-make_index.translate_text()
+make_index.translate_text() #元々ファイルがあれば作成しない
 
 #indexがjsonで保存されていればそれをloadする、indexが保存されていなければ作成してsaveする
 [indexes_en,indexes_ja] = make_index.create_index()
