@@ -60,15 +60,14 @@ def translate_text():
     dir_path = f'data/data_txt/{i+1}'
     file_name = f'{i+1}.txt'
     file_path = os.path.join(dir_path, file_name)
-
-    with open(file_path) as f:
-      lines = f.read()
-      lines_translated = translator.translate_text(lines,source_lang="JA",target_lang="EN-US",glossary=mydic_id_ja_en)
-
     os.makedirs(f'data/data_translated_{i+1}',exist_ok = True)
 
-    with open(f"data/data_translated_{i+1}/{i+1}_translated.txt", "w") as new_file:
-      new_file.write(lines_translated.text)
+    if not os.path.exists(f"data/data_translated_{i+1}/{i+1}_translated.txt"):
+      with open(file_path) as f:
+        lines = f.read()
+        lines_translated = translator.translate_text(lines,source_lang="JA",target_lang="EN-US",glossary=mydic_id_ja_en)
+      with open(f"data/data_translated_{i+1}/{i+1}_translated.txt", "w") as new_file:
+        new_file.write(lines_translated.text)
 
 def make_japanese_index():
   indexes = []
@@ -105,4 +104,27 @@ def make_english_index():
       indexes_translated.append(index)
   return indexes_translated
 
+def create_index():
+  if os.path.exists(f'data/data_index/index_en_1.json'):
+    indexes_en = []
+    for i in range(num_docx):
+      index_en = GPTSimpleVectorIndex.load_from_disk(f'data/data_index/index_en_{i+1}.json')
+      indexes_en.append(index_en)
+  else:
+    indexes_en = make_english_index()
+    for i in range(num_docx):
+      indexes_en[i].save_to_disk(f'data/data_index/index_en_{i+1}.json')
+
+  
+  if os.path.exists(f'data/data_index/index_ja_1.json'):
+    indexes_ja = []
+    for i in range(num_docx):
+      index_ja = GPTSimpleVectorIndex.load_from_disk(f'data/data_index/index_ja_{i+1}.json')
+      indexes_ja.append(index_ja)
+  else:
+    indexes_ja = make_japanese_index()
+    for i in range(num_docx):
+      indexes_ja[i].save_to_disk(f'data/data_index/index_ja_{i+1}.json')
+
+  return [indexes_en,indexes_ja]  
   
