@@ -1,5 +1,11 @@
 import question,make_index
+import log_setting
+import logging
 
+#logの設定
+log_setting.set_log()
+logger = logging.getLogger('mylog')
+  
 #環境変数の設定、indexを作成するための翻訳txtファイルの用意、deeplのglossaryの設定
 make_index.set_env()
 make_index.set_deepl()
@@ -12,9 +18,10 @@ make_index.translate_text() #元々ファイルがあれば作成しない
 print("Indexに対して質問したいことを「質問者:---?」の形で書いてください")
 q = input()
 #翻訳されたIndexに対して質問
-print("Question to Translated Index")
+logger.info(q)
+logger.info("Question to Translated Index")
 question.question_to_translated(indexes_en,q)
-print("---")
+logger.info("---")
 #翻訳していないIndexに対して質問
-print("Question to Japanese Index")
+logger.info("Question to Japanese Index")
 question.question_to_japanese(indexes_ja,q)

@@ -44,4 +44,6 @@ $ docker-compose exec app pipenv run python src/main.py
 data/data_txtにフォルダが存在していれば実行可能
 
 これを実行すると質問を入力する指示が出てくるのでその通りに行う
+
+出力結果はlog/development.logに記載される
 ```
