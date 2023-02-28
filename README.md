@@ -21,8 +21,8 @@ $ pipenv shell
 
 # テスト
 $ docker-compose exec app pipenv run python setup.py test
+```
 
-# indexへの質問
+## indexへの質問
 $ docker-compose exec app pipenv run python src/main.py
 これを実行すると質問を入力する指示が出てくるのでその通りに行う
-```
