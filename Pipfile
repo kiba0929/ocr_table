@@ -11,6 +11,7 @@ pep8-naming = ">=0.8.2"
 gpt-index = "*"
 docx2txt = "*"
 deepl = "*"
+python-dotenv = "*"
 
 [requires]
 python_version = "3.9"
