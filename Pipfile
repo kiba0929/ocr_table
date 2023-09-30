@@ -8,10 +8,11 @@ autopep8 = ">=1.5"
 pep8-naming = ">=0.8.2"
 
 [packages]
-gpt-index = "*"
-docx2txt = "*"
-deepl = "*"
-python-dotenv = "*"
+pandas = "*"
+numpy = "*"
+matplotlib = "*"
+easyocr = "*"
+opencv-python = "*"
 
 [requires]
 python_version = "3.9"
